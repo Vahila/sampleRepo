@@ -40,6 +40,24 @@ jobs:
         uses: matlab-actions/run-command@v0
         with:
           command: version
+          
+      - name: Run Tests
+        uses: matlab-actions/run-tests@v0.1.0
+        with:
+          source-folder: src
+          test-results-junit: test-results/results.xml
+          code-coverage-cobertura: code-coverage/coverage.xml
+            
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-artifact
+          path: code-coverage/coverage.xml
+          
+      - name: upload to codecov 
+        uses: codecov/codecov-action@v1 
+        with:
+          file: code-coverage/coverage.xml
 
 
 
