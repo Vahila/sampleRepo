@@ -1,4 +1,4 @@
-classdef testModelSim < matlab.unittest.TestCase
+classdef (TestTags = {'TestModel'}) testModelSim < matlab.unittest.TestCase
     %TESTCALC Summary of this class goes here
     %   Detailed explanation goes here
     
