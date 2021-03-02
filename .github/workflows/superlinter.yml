@@ -42,7 +42,7 @@ jobs:
           command: version
           
       - name: Run Tests
-        uses: matlab-actions/run-tests@v0.1.0
+        uses: matlab-actions/run-tests@vmain
         with:
           source-folder: src
           test-results-junit: test-results/results.xml
