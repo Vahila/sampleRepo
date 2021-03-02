@@ -47,6 +47,7 @@ jobs:
           source-folder: src
           test-results-junit: test-results/results.xml
           code-coverage-cobertura: code-coverage/coverage.xml
+          select-by-tag: TestModel
             
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
