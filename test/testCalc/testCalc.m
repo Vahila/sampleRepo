@@ -1,4 +1,4 @@
-lassdef testCalc < matlab.unittest.TestCase
+classdef testCalc < matlab.unittest.TestCase
     %TESTCALC Summary of this class goes here
     %   Detailed explanation goes here
     
