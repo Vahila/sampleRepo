@@ -20,9 +20,7 @@ jobs:
         with:
           source-folder: src
           select-by-folder: test/path
-          model-coverage-cobertura: test-results-incorrect-path/model-coverage.xml
-          test-results-simulink-test: test-results-incorrect-path/simulink-test-results.mldatx
-          test-results-pdf: test-results-incorrect-path/pdf-results.pdf
+          test-results-pdf: test-results-incorrect-path/pdf results#2.pdf
             
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
