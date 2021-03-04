@@ -19,8 +19,9 @@ jobs:
         uses: matlab-actions/run-tests@newoptions-bash
         with:
           source-folder: src
-          select-by-folder: test/path
-          test-results-pdf: test-results-incorrect-path/pdf results#2.pdf
+          test-results-pdf: test-results/result.pdf
+          model-coverage-cobertura: test-results/result1.xml
+          code-coverage-cobertura: result.xml
             
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
