@@ -19,9 +19,10 @@ jobs:
         uses: matlab-actions/run-tests@newoptions-bash
         with:
           source-folder: src
-          test-results-junit: test-results/results.xml
-          code-coverage-cobertura: code-coverage/coverage.xml
           select-by-tag: TestModel
+          model-coverage-cobertura: test-results/model-coverage.xml
+          test-results-simulink-test: test-results/simulink-test-results.mldatx
+          test-results-pdf: test-results/pdf-results.pdf
             
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
