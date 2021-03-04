@@ -19,16 +19,16 @@ jobs:
         uses: matlab-actions/run-tests@newoptions-bash
         with:
           source-folder: src
-          select-by-tag: TestModel
-          model-coverage-cobertura: test-results/model-coverage.xml
-          test-results-simulink-test: test-results/simulink-test-results.mldatx
-          test-results-pdf: test-results/pdf-results.pdf
+          select-by-folder: test/path
+          model-coverage-cobertura: test-results-incorrect-path/model-coverage.xml
+          test-results-simulink-test: test-results-incorrect-path/simulink-test-results.mldatx
+          test-results-pdf: test-results-incorrect-path/pdf-results.pdf
             
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: code-coverage-artifact
-          path: test-results/
+          path: test-results-incorrect-path/
           
 #       - name: upload to codecov 
 #         uses: codecov/codecov-action@v1 
