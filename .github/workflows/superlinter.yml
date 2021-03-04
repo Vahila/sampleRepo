@@ -19,7 +19,7 @@ jobs:
         uses: matlab-actions/run-tests@newoptions-bash
         with:
           source-folder: src
-          test-results-pdf: test-results/result.pdf
+          test-results-pdf: test-results/.pdf
           model-coverage-cobertura: test-results/result1.xml
           code-coverage-cobertura: result.xml
             
