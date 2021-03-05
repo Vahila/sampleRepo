@@ -19,7 +19,7 @@ jobs:
         uses: matlab-actions/run-tests@newoptions-bash
         with:
           source-folder: src/folderA
-          select-by-tags: TestSquare
+          select-by-tags: Test
             
 #       - name: Upload artifacts
 #         uses: actions/upload-artifact@v2
