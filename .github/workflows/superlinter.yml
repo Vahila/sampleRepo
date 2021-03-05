@@ -22,7 +22,7 @@ jobs:
           test-results-pdf: test-results/results.pdf
           test-results-html: test-results/result.html
           code-coverage-cobertura: test-results/result.xml
-          select-by-folder: test/testCalc
+          select-by-tag: TestSquare
             
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
