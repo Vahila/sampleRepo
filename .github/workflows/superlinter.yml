@@ -17,8 +17,6 @@ jobs:
           command: version          
       - name: Run Tests
         uses: matlab-actions/run-tests@newoptions-bash
-        with:
-          source-folder: src
 #           select-by-tag: TestSquares
             
 #       - name: Upload artifacts
