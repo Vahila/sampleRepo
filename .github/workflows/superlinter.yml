@@ -15,14 +15,11 @@ jobs:
         uses: matlab-actions/run-commands@v0
         with:
           command: version          
-#       - name: Run Tests
-#         uses: matlab-actions/run-tests@newoptions-bash
-#         with:
-#           source-folder: src/folderA
-#           test-results-pdf: test-results/results.pdf
-#           test-results-html: test-results/result.html
-#           code-coverage-cobertura: test-results/result.xml
-#           select-by-tag: TestSquare
+      - name: Run Tests
+        uses: matlab-actions/run-tests@newoptions-bash
+        with:
+          source-folder: src/folderA
+          select-by-tags: TestSquare
             
 #       - name: Upload artifacts
 #         uses: actions/upload-artifact@v2
