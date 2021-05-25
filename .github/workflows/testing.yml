@@ -1,7 +1,7 @@
 name: Integration test cases
 on: workflow_dispatch
 jobs:
-    Build fails for Invalid command:
+    Build_fails_for_Invalid_command:
       name: Run MATLAB Script
       runs-on: ubuntu-latest
       steps:
@@ -15,7 +15,7 @@ jobs:
           uses: matlab-actions/run-command@v0
           with:
             command: versi
-    Build fails when MATLAB is not setup:
+    Build_fails_when_MATLAB_is_not_setup:
         name: Build without MATLAB
         runs-on: ubuntu-latest
         steps:
