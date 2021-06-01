@@ -1,0 +1,13 @@
+name: Set up MATLAB integration test cases
+on: [push]
+jobs:
+    Build_without_matlab_set_up:
+      name: Build with invalid command
+      runs-on: ubuntu-latest
+      steps:
+        - name: Check out repository
+          uses: actions/checkout@v2
+        - name: Run invalid command
+          uses: matlab-actions/run-command@v0
+          with:
+            command: version
