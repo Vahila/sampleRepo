@@ -1,10 +1,10 @@
 name: Integration test cases
-on: [push]
+on: push
 jobs:
     Build_fails_for_Invalid_command:
       strategy:
             matrix:
-                platform: [ubuntu-latest, macos-latest, windows-latest]
+                platform: [ubuntu-latest, ubuntu-18.04]
       runs-on: ${{ matrix.platform }}
       steps:
         - name: Check out repository
@@ -13,17 +13,7 @@ jobs:
           uses: matlab-actions/setup-matlab@v0
           with:
               release: R2020b
-        - name: Run invalid command
+        - name: Run command
           uses: matlab-actions/run-command@v0
           with:
-            command: versi
-    Build_fails_when_MATLAB_is_not_setup:
-        name: Build without MATLAB
-        runs-on: ubuntu-latest
-        steps:
-          - name: Check out repository
-            uses: actions/checkout@v2
-          - name: Run command 
-            uses: matlab-actions/run-command@v0
-            with:
-              command: version
+            command: version
