@@ -21,5 +21,6 @@ jobs:
           with:
             command: version
         - name: Print
-          if: ${{ ${{matrix.platform}} == 'ubuntu-latest' }}
-          run: echo "matrix platform is" ${{matrix.platform}} "and runner is" ${{runner}}
+          if: ${{matrix.platform}} == 'ubuntu-latest'
+          uses: matlab-actions/setup-matlab@v0
+          #run: echo "matrix platform is" ${{matrix.platform}} "and runner is" ${{runner}}
