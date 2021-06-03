@@ -1,9 +1,9 @@
-name: Set up MATLAB integration test cases
+name: Release option
 on: 
- workflow_dispatch:
-  inputs:
-      release_option:
-        description: 'MATLAB release'     
+  workflow_dispatch:
+    inputs:
+      releaseOption:
+        description: 'Release Option'     
         required: true
 jobs:
     Build_fails_for_Invalid_command:
