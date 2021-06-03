@@ -1,10 +1,10 @@
 name: Release option
-on: 
-  workflow_dispatch:
-    inputs:
-      releaseOption:
-        description: 'Release Option'     
-        required: true
+on: push
+  #workflow_dispatch:
+   # inputs:
+     # releaseOption:
+      #  description: 'Release Option'     
+       # required: true
 jobs:
     Build_fails_for_Invalid_command:
       name: Build with Release Option
