@@ -1,5 +1,5 @@
 name: Set up MATLAB integration test case2
-on: [workflow_dispatch]
+on: [push]
 jobs:
     Build_with_MATLAB_set_up:
       name: Build with invalid command
