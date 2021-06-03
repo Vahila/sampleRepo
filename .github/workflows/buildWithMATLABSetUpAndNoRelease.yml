@@ -1,4 +1,4 @@
-name: Set up MATLAB integration test cases
+name: Set up MATLAB integration test case2
 on: [workflow_dispatch]
 jobs:
     Build_with_MATLAB_set_up:
