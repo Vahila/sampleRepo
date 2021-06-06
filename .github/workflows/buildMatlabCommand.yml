@@ -1,5 +1,10 @@
 name: Run MATLAB Command integration test cases
-on: [workflow_dispatch]
+on: 
+  workflow_dispatch:
+    inputs:
+      MatlabCommand:
+        description: 'Command to run'     
+        required: true
 jobs:
     Run_Matlab_command:
       name: Run Matlab Command
@@ -10,4 +15,4 @@ jobs:
         - name: Run Matlab command
           uses: matlab-actions/run-command@v0
           with:
-            command: version
+            command: ${{ github.event.inputs.MatlabCommand }}
