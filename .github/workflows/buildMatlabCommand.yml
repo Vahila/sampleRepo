@@ -1,0 +1,13 @@
+name: Run MATLAB Command integration test cases
+on: [workflow_dispatch]
+jobs:
+    Run_Matlab_command:
+      name: Run Matlab Command
+      runs-on: ubuntu-latest
+      steps:
+        - name: Install MATLAB
+          uses: matlab-actions/setup-matlab@v0
+        - name: Run Matlab command
+          uses: matlab-actions/run-command@v0
+          with:
+            command: version
