@@ -18,6 +18,12 @@ jobs:
         - name: Run command
           uses: matlab-actions/run-command@v0
  
-        - name: Print
+        - name: Envi
           if: matrix.platform == 'ubuntu-latest'
+          env:
+            GitHub_Hosted: true
           run: echo "matrix platform is" ${{matrix.platform}} "and runner is" ${{runner}}
+          
+        - name: Check Envi
+          if: ${{ env.GitHub_Hosted == 'true' }}
+          run: echo "Its a github hosted runner"
