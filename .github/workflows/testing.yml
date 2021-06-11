@@ -10,7 +10,7 @@ jobs:
         - name: Check out repository
           uses: actions/checkout@v2
           
-        - if: ${{matrix.platform}} == 'ubuntu-latest'
+        - if: matrix.platform == 'ubuntu-latest'
           name: Install MATLAB          
           uses: matlab-actions/setup-matlab@v0
 
@@ -20,5 +20,4 @@ jobs:
  
         - name: Print
           if: matrix.platform == 'ubuntu-latest'
-          uses: matlab-actions/setup-matlab@v0
-          #run: echo "matrix platform is" ${{matrix.platform}} "and runner is" ${{runner}}
+          run: echo "matrix platform is" ${{matrix.platform}} "and runner is" ${{runner}}
