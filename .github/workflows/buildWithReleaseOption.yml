@@ -5,10 +5,13 @@ on:
       releaseOption:
         description: 'Release Option for build'     
         required: true
+      runnerName:
+        description: 'Runner used for build'
+        required: true
 jobs:
     Build_fails_for_Invalid_command:
       name: Build with Release Option
-      runs-on: ubuntu-latest
+      runs-on: ${{ github.event.inputs.runnerName }}
       steps:
         - name: Check out repository
           uses: actions/checkout@v2
