@@ -1,9 +1,14 @@
 name: Set up MATLAB integration test case2
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
+    inputs:
+      runnerName:
+        description: 'Runner used for build'
+        required: true
 jobs:
     Build_with_MATLAB_set_up:
       name: Build with invalid command
-      runs-on: ubuntu-latest
+      runs-on: ${{ github.event.inputs.runnerName }}
       steps:
         - name: Check out repository
           uses: actions/checkout@v2
