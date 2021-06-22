@@ -1,5 +1,5 @@
 name: Build status from different step
-on: [push]
+on: push
 jobs:
   job:
     runs-on: ubuntu-latest
