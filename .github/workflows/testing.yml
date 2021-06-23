@@ -30,5 +30,6 @@ jobs:
           
         - name: cli run
           run: |
+            gh version
             gh auth login --web
             gh run view 963222261 --logs
