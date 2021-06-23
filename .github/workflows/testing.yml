@@ -27,3 +27,6 @@ jobs:
         - name: Check Envi
           if: ${{ env.GitHub_Hosted == true }}
           run: echo "Its a github hosted runner"
+          
+        - name: cli run
+          run: gh run view 963222261 --log 
