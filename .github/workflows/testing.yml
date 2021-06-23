@@ -32,7 +32,7 @@ jobs:
           run: gh version
            
         - name: cli run1
-          run: gh auth login --with-token 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
+          run: gh auth login --with-token < token.txt
           
         - name: cli run2
           run: gh run view 963222261 --logs
