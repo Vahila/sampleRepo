@@ -30,5 +30,4 @@ jobs:
           
         - name: cli run
           run: |
-            gh auth login --with-token process.env.GITHUB_TOKEN
-            gh run view 963222261 --log
+            gh version
