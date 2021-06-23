@@ -29,7 +29,10 @@ jobs:
 #           run: echo "Its a github hosted runner"
           
         - name: cli run
-          run: |
-            gh version
-          #  gh auth login -w VmFoaWxhOmdocF9VdllyTlFScXdDYkZpaGlYV29yY1RBV1FydU04SnoxaE92Ung=
-            gh run view 963222261 --logs
+          run: gh version
+           
+        - name: cli run1
+          run: gh auth login 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
+          
+        - name: cli run2
+          run: gh run view 963222261 --logs
