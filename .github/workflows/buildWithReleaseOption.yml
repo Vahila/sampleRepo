@@ -15,8 +15,7 @@ jobs:
       steps:
         - name: Check out repository
           uses: actions/checkout@v2
-        - if: ${{SELFHOSTED}}
-          name: Install MATLAB
+        - name: Install MATLAB
           uses: matlab-actions/setup-matlab@v0
           with:
             release: ${{ github.event.inputs.releaseOption }}
