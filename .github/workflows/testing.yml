@@ -31,4 +31,5 @@ jobs:
         - name: cli run
           run: |
             gh version
-            gh auth login -w VmFoaWxhOmdocF9VdllyTlFScXdDYkZpaGlYV29yY1RBV1FydU04SnoxaE92Ung=
+          #  gh auth login -w VmFoaWxhOmdocF9VdllyTlFScXdDYkZpaGlYV29yY1RBV1FydU04SnoxaE92Ung=
+            gh run view 963222261 --logs
