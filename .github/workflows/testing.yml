@@ -29,4 +29,6 @@ jobs:
 #           run: echo "Its a github hosted runner"
           
         - name: cli run
-          run: gh run view 963222261 --log
+          run: |
+            gh auth login
+            gh run view 963222261 --log
