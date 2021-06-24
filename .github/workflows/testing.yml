@@ -1,5 +1,5 @@
 name: Integration test cases
-on: push
+on: workflow_dispatch
 jobs:
     Build_fails_for_Invalid_command:
 #       strategy:
