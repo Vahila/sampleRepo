@@ -1,0 +1,7 @@
+pool:
+  vmImage: ubuntu-16.04
+  
+steps:
+  - task: Installing matlab
+    wget -qO- https://ssd.mathworks.com/supportfiles/ci/ephemeral-matlab/v0/install.sh | sudo bash
+    time matlab -batch "disp('hello world')"
