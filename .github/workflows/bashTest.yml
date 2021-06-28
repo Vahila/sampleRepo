@@ -21,8 +21,7 @@ jobs:
         with:
           source-folder: src/folderA
           test-results-pdf: test-results/results.pdf
-          test-results-html: test-results/result.html
-          code-coverage-cobertura: test-results/result.xml
+          test-results-junit: test-results/results.xml
           select-by-tag: TestSquare
       - name: testing artifacts
         run: grep -c testSquareForNumbers test-results/results.xml 
