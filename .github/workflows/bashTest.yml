@@ -13,8 +13,9 @@ jobs:
         - name:  Tests
           uses: matlab-actions/run-tests@v0
           with:
-             select-by-folder: test/testCalc/
-             test-results-junit: test-results/results.xml
-         - name: testing artifacts
-           run: grep -c testSquareForNumbers test-results/results.xml 
+            source-folder: src
+            select-by-folder: test/testCalc/
+            test-results-junit: test-results/results.xml
+        - name: testing artifacts
+          run: grep -c testSquareForNumbers test-results/results.xml 
            
