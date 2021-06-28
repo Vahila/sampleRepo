@@ -1,0 +1,20 @@
+name: Release option
+on: push
+jobs:
+    Test_outout_from_artifacts:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Install MATLAB
+          uses: matlab-actions/setup-matlab@v0
+        - name: Command
+          uses: matlab-actions/run-command@v0
+          with:
+            command: version
+        - name:  Tests
+          uses: matlab-actions/run-tests@v0
+          with:
+             select-by-folder: test/testCalc/
+             test-results-junit: test-results/results.xml
+         - name: testing artifacts
+           run: grep -c testSquareForNumbers test-results/results.xml 
+           
