@@ -11,5 +11,6 @@ jobs:
         gh version
         echo ${{secrets.GH_TOKEN}}
         export GITHUB_TOKEN=${{secrets.GH_TOKEN}}
+        gh repo clone Vahila/sampleRepo
         gh run view 982053967 --log
         gh run view --job=2940382877 --log | grep -c test
