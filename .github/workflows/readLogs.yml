@@ -11,4 +11,4 @@ jobs:
         gh version
         echo ${{secrets.GH_TOKEN}}
         export GITHUB_TOKEN=${{secrets.GH_TOKEN}}
-        gh run view --job my-job --log | grep test
+        gh run view --job 2891926639 --log | grep -c test
