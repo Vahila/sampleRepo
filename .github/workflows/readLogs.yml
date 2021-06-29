@@ -2,7 +2,7 @@ name: Run MATLAB Script on GitHub-Hosted Runner
 on: [push]
 jobs:
   my-job-test:
-   name: Run MATLAB Script1
+   name: Run MATLAB Script
    runs-on: ubuntu-latest
    steps:
      - name: cli run
