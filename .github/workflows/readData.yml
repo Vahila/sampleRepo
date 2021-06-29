@@ -1,0 +1,10 @@
+name: Run MATLAB Script on GitHub-Hosted Runner
+on: [push]
+jobs:
+  my-job:
+    name: Run MATLAB Script
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign release version from version.properties to Env variable
+        run: |
+          cat ./data.properties >> $GITHUB_ENV
