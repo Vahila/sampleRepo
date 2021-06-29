@@ -16,7 +16,7 @@ jobs:
         with:
           command: version          
       - name: Run Tests
-        uses: matlab-actions/run-tests@newoptions-bash
+        uses: matlab-actions/run-tests@v0
         with:
           source-folder: src/folderA
           test-results-pdf: test-results/results.pdf
