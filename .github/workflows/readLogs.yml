@@ -2,15 +2,15 @@ name: Run MATLAB Script on GitHub-Hosted Runner
 on: [push]
 jobs:
   my-job-test:
-  name: Run MATLAB Script
-  runs-on: ubuntu-latest
-  steps:
-    - name: cli run
-      shell: bash
-      run: |
+   name: Run MATLAB Script
+   runs-on: ubuntu-latest
+   steps:
+     - name: cli run
+       shell: bash
+       run: |
         gh version
         echo ${{secrets.GH_TOKEN}}
         export GITHUB_TOKEN=${{secrets.GH_TOKEN}}
-    - name: test logs
-      run: |
+     - name: test logs
+       run: |
         gh run view --job my-job --log | grep test
