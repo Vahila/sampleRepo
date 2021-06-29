@@ -7,4 +7,6 @@ jobs:
     steps:
       - name: Assign release version from version.properties to Env variable
         run: |
+          pwd
+          ls
           cat data.properties >> $GITHUB_ENV
