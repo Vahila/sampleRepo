@@ -12,6 +12,7 @@ jobs:
           pwd
           cd ..
           pwd
+          cat data.properties >> $GITHUB_ENV  
       
       - name: run ls
         run: ls
