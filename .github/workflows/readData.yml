@@ -5,6 +5,8 @@ jobs:
     name: Run MATLAB Script
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
       - name: Assign release version from version.properties to Env variable
         run: |
           pwd
