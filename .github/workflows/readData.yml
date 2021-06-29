@@ -6,7 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Assign release version from version.properties to Env variable
-        run: pwd
+        run: |
+          pwd
+          cd ..
+          pwd
       
       - name: run ls
         run: ls
