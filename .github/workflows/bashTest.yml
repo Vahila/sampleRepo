@@ -25,16 +25,19 @@ jobs:
         run: grep -c testSquareForNumbers test-results/results.xml
         
         
-#   my-second-job:
-#     strategy:
-#       matrix:
-#          platform: [ubuntu-latest, ubuntu-18.04]
-#     name: Build without matlab
-#     runs-on: ${{matrix.platform}}
-#     steps:
-#       - name: Check out repository
-#         uses: actions/checkout@v2
-#       - name: Install MATLAB
-#         uses: matlab-actions/setup-matlab@v0
-#         with:
-#             release: R2020b     
+  my-second-job:
+    strategy:
+      matrix:
+         platform: [ubuntu-latest, ubuntu-18.04]
+    name: Run bash command
+    runs-on: ${{matrix.platform}}
+    steps:
+      - name: Initialise
+        run: |
+          a=2
+      - name: Initialize b
+        if: matrix.platform == ubuntu-latest
+        run: b = 3
+        
+      - name: sum
+        run: c = a+b;
