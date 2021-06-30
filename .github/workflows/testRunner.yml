@@ -1,0 +1,5 @@
+name: Test Runner
+on: 
+  workflow_run:
+    workflows: ["Build"]
+    types: [completed]
