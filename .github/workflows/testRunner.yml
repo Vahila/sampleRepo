@@ -9,6 +9,6 @@ jobs:
     name: Test Runner
     runs-on: ubuntu-latest
     steps:
-      -name: Test files running
-      run: | 
-        curl --request POST --url "https://api.github.com/repos/Vahila/sampleRepo/actions/workflows/bahTest.yml/dispatches"
+      - name: Test files running
+        run: curl --request POST --url "https://api.github.com/repos/Vahila/sampleRepo/actions/workflows/bahTest.yml/dispatches"
+         
