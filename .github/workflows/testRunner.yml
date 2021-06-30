@@ -5,7 +5,7 @@ jobs:
   test-runner:
     strategy:
       matrix:
-        test-files: [bashTest.yml]
+        test-files: [bashTest.yml, buildWithReleaseOption.yml]
     name: Test Runner
     runs-on: ubuntu-latest
     steps:
