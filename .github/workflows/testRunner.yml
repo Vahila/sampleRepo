@@ -1,5 +1,14 @@
 name: Test Runner
-on: 
-  workflow_run:
-    workflows: ["Build"]
-    types: [completed]
+on: push
+
+jobs:
+  test-runner:
+    strategy:
+      matrix:
+        test-files: [bashTest.yml]
+    name: Test Runner
+    runs-on: ubuntu-latest
+    steps:
+      -name: Test files running
+      run: | 
+        curl --request POST --url "https://api.github.com/repos/Vahila/sampleRepo/actions/workflows/bahTest.yml/dispatches"
