@@ -1,6 +1,5 @@
-           
 name: Run MATLAB Script on GitHub-Hosted Runner
-on: push
+on: workflow_dispatch
 jobs:
   my-job:
     strategy:
@@ -14,11 +13,7 @@ jobs:
       - name: Install MATLAB
         uses: matlab-actions/setup-matlab@v0
         with:
-            release: R2020b
-      - name: Run script
-        uses: matlab-actions/run-command@v0
-        with:
-          command: version          
+            release: R2020b          
       - name: Run Tests
         uses: matlab-actions/run-tests@newoptions-bash
         with:
@@ -27,4 +22,19 @@ jobs:
           test-results-junit: test-results/results.xml
           select-by-tag: TestSquare
       - name: testing artifacts
-        run: grep -c testSquareForNumbers test-results/results.xml 
+        run: grep -c testSquareForNumbers test-results/results.xml
+        
+        
+#   my-second-job:
+#     strategy:
+#       matrix:
+#          platform: [ubuntu-latest, ubuntu-18.04]
+#     name: Build without matlab
+#     runs-on: ${{matrix.platform}}
+#     steps:
+#       - name: Check out repository
+#         uses: actions/checkout@v2
+#       - name: Install MATLAB
+#         uses: matlab-actions/setup-matlab@v0
+#         with:
+#             release: R2020b     
