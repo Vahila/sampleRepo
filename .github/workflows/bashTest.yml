@@ -36,7 +36,7 @@ jobs:
         run: |
           a=2
       - name: Initialize b
-        if: matrix.platform == ubuntu-latest
+        if: matrix.platform == 'ubuntu-latest'
         run: b = 3
         
       - name: sum
