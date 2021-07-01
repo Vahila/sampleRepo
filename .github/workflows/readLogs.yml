@@ -16,8 +16,8 @@ jobs:
           echo runs.json
           echo `cat runs.json | jq '.workflow_runs[0].id'`
           var=$(cat runs.json | jq '.workflow_runs[0].id')
-          env:
-            run_id: var
-          echo env.run_id
-          echo $var
+        env:
+          run_id: var
+      - name: print env
+        run: echo env.run_id
            
