@@ -9,15 +9,15 @@ jobs:
 #       - name: Test files running
 #         run: curl --request POST --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/Vahila/sampleRepo/actions/workflows/${{matrix.test-files}}/dispatches"       
 
-      - name: API to get run id
-        run: |
-          curl --request GET --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/Vahila/sampleRepo/actions/workflows/bashTest.yml/runs" -o runs.json
-          ls
-          echo "runid=$(cat runs.json | jq '.workflow_runs[0].id')" >> $GITHUB_ENV
-          echo `cat runs.json | jq '.workflow_runs[0].id'`
+#       - name: API to get run id
+#         run: |
+#           curl --request GET --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/Vahila/sampleRepo/actions/workflows/bashTest.yml/runs" -o runs.json
+#           ls
+#           echo "runid=$(cat runs.json | jq '.workflow_runs[0].id')" >> $GITHUB_ENV
+#           echo `cat runs.json | jq '.workflow_runs[0].id'`
         
-      - name: print env
-        run: echo ${{env.runid}}
+#       - name: print env
+#         run: echo ${{env.runid}}
         
       - name: API to get jobids
         id: jobids_get
@@ -25,7 +25,7 @@ jobs:
           curl --request GET --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/Vahila/sampleRepo/actions/runs/989142270/jobs" -o jobs.json
           echo "jobids=$(cat jobs.json | jq -r '.jobs[].id')"
           echo $jobids
-          echo "::set-output name=jobs::$jobids
+          echo "::set-output name=jobs::$jobids"
       - name: print jobids
         run: |
           echo ${{fromJSON(steps.jobids_get.outputs.jobs)}}
