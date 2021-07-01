@@ -11,7 +11,7 @@ jobs:
 
       - name: API to get logs
         run: |
-          curl --request GET --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/octocat/hello-world/actions/workflows/${{matrix.test-files}}/runs" -o runs.json
+          curl --request GET --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/octocat/hello-world/actions/workflows/bashTest.yml/runs" -o runs.json
           ls
           echo runs.json
           echo `cat runs.json | jq '.workflow_runs[0]'`
