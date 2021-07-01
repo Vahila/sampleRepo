@@ -1,12 +1,9 @@
-name: Test Runner
-on: workflow_dispatch
+name: Read logs
+on: push
 
 jobs:
-  test-runner:
-    strategy:
-      matrix:
-        test-files: [bashTest.yml, buildWithReleaseOption.yml]
-    name: Test Runner
+  read-logs:
+    name: Reading logs
     runs-on: ubuntu-latest
     steps:
 #       - name: Test files running
