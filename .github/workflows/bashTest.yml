@@ -1,7 +1,8 @@
 name: Run MATLAB Script on GitHub-Hosted Runner
-on: push
+on: workflow_dispatch
 jobs:
 #   my-job:
+#       continue-on-error: true
 #     strategy:
 #       matrix:
 #          platform: [ubuntu-latest, ubuntu-18.04]
@@ -44,6 +45,7 @@ jobs:
         run: c = a+b;
         
   my-third-job:
+    continue-on-error: true
     name: Run test
     runs-on: ubuntu-latest
     steps:
