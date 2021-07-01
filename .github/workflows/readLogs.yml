@@ -16,4 +16,5 @@ jobs:
         cd sampleRepo
         ls
         gh run view ${{github.run_id}} --log | grep -c cli
+        gh run view --job ${{github.job}} --log | grep -c test
         
