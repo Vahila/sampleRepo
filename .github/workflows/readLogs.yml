@@ -1,20 +1,19 @@
-name: Run MATLAB Script on GitHub-Hosted Runner
-on: push
+name: Test Runner
+on: workflow_dispatch
+
 jobs:
-  my-job-test:
-   name: Run MATLAB Script
-   runs-on: ubuntu-latest
-   steps:
-     - name: cli run
-       run: |
-        gh version
-        echo ${{secrets.GH_TOKEN}}
-        export GITHUB_TOKEN=${{ secrets.REST_API_TOKEN }}
-        echo ${{github.job}}
-        echo ${{github.run_id}}
-        gh repo clone Vahila/sampleRepo
-        cd sampleRepo
-        ls
-        gh run view 988888178 --log | grep -c cli
-        gh run view --job ${{github.job}} --log | grep -c test
-        
+  test-runner:
+    strategy:
+      matrix:
+        test-files: [bashTest.yml, buildWithReleaseOption.yml]
+    name: Test Runner
+    runs-on: ubuntu-latest
+    steps:
+#       - name: Test files running
+#         run: curl --request POST --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/Vahila/sampleRepo/actions/workflows/${{matrix.test-files}}/dispatches"       
+
+      - name: API to get logs
+        run: |
+          curl --request GET --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/octocat/hello-world/actions/workflows/${{matrix.test-files}}/runs" -o runs.json
+          ls
+          databasename=`cat runs.json | json select '.workflow_runs[0]'`
