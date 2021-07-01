@@ -31,3 +31,8 @@ jobs:
           echo "${{ steps.jobids_get.outputs.jobs }}"
           if [[ ${{ steps.jobids_get.outputs.jobs }} == *"[]"* ]]; then
             echo "empty"
+            
+    
+      - uses: actions/setup-python@v2
+      - run: python -c "import json; y = json.loads(jobs.json); jobs = y[jobs.id]"
+        
