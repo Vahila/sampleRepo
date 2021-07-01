@@ -10,5 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test files running
-        run: curl --request POST --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/Vahila/sampleRepo/actions/workflows/${{matrix.test-files}}/dispatches"
+        run: curl --request POST --header "Authorization:Bearer ${{ secrets.REST_API_TOKEN }}" --url "https://api.github.com/repos/Vahila/sampleRepo/actions/workflows/${{matrix.test-files}}/dispatches"
          
