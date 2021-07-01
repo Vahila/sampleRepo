@@ -15,8 +15,8 @@ jobs:
           ls
           echo runs.json
           echo `cat runs.json | jq '.workflow_runs[0].id'`
-          var=$(cat runs.json | jq '.workflow_runs[0].id')
-          export runid=var
+          runid=$(cat runs.json | jq '.workflow_runs[0].id')
+          echo "::set-env name=runid::$runid"
       - name: print env
         run: echo $runid
            
