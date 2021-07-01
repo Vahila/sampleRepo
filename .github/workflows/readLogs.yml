@@ -28,3 +28,5 @@ jobs:
       - name: print jobids
         run: |
           echo "${{ steps.jobids_get.outputs.jobs }}"
+          if [[ ${{ steps.jobids_get.outputs.jobs }} == *"[]"* ]]; then
+          echo "empty"
