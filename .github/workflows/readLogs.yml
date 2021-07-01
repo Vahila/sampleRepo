@@ -13,4 +13,4 @@ jobs:
         echo ${{github.job}}
         echo ${{github.run_id}}
         gh run view 982053967 --log
-        gh run view --job=2948690356 --log | grep -c test
+        
