@@ -9,7 +9,7 @@ jobs:
 #       - name: Test files running
 #         run: curl --request POST --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/Vahila/sampleRepo/actions/workflows/${{matrix.test-files}}/dispatches"       
 
-      - name: API to get logs
+      - name: API to get run id
         run: |
           curl --request GET --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/Vahila/sampleRepo/actions/workflows/bashTest.yml/runs" -o runs.json
           ls
@@ -18,4 +18,10 @@ jobs:
         
       - name: print env
         run: echo ${{env.runid}}
-           
+        
+      - name: API to get jobids
+        run: |
+          curl --request GET --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/Vahila/sampleRepo/actions/runs/989142270/jobs" -o jobs.json
+          echo "jobids=($cat jobs.json | jq -r '.jobs[].id')" >> $GITHUB_ENV
+      - name: print jobids
+        run: echo ${{env.jobids}}
