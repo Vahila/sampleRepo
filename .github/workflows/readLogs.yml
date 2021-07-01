@@ -1,5 +1,5 @@
 name: Read logs
-on: push
+on: workflow_dispatch
 
 jobs:
   read-logs:
