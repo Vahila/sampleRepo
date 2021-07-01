@@ -12,5 +12,7 @@ jobs:
         export GITHUB_TOKEN=${{ secrets.REST_API_TOKEN }}
         echo ${{github.job}}
         echo ${{github.run_id}}
+        gh repo clone Vahila/sampleRepo
+        cd sampleRepo
         gh run view ${{github.run_id}} --log | grep -c cli
         
