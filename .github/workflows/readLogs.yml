@@ -12,4 +12,4 @@ jobs:
         export GITHUB_TOKEN=${{ secrets.REST_API_TOKEN }}
         gh repo clone Vahila/sampleRepo
         gh run view 982053967 --log
-        gh run view --job=2940382877 --log | grep -c test
+        gh run view --job=2948690356 --log | grep -c test
