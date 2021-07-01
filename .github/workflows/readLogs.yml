@@ -25,7 +25,7 @@ jobs:
           curl --request GET --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/Vahila/sampleRepo/actions/runs/989142270/jobs" -o jobs.json
           echo "jobids=$(cat jobs.json | jq -r '.jobs[].id')"
           echo $jobids
-          echo "::set-output name=jobs::{\"jobids\":[$jobids]}"
+          echo "::set-output name=jobs::$jobids
       - name: print jobids
         run: |
-          echo ${{fromJSON(steps.jobids_get.outputs.jobs.jobids)}}
+          echo ${{fromJSON(steps.jobids_get.outputs.jobs)}}
