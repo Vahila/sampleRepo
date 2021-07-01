@@ -10,6 +10,6 @@ jobs:
         gh version
         echo ${{secrets.GH_TOKEN}}
         export GITHUB_TOKEN=${{ secrets.REST_API_TOKEN }}
-        echo ${{job.container.id}}
+        echo ${{github.job}}
         gh run view 982053967 --log
         gh run view --job=2948690356 --log | grep -c test
