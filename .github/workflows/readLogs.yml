@@ -13,4 +13,5 @@ jobs:
         run: |
           curl --request GET --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/octocat/hello-world/actions/workflows/${{matrix.test-files}}/runs" -o runs.json
           ls
-          databasename=`cat runs.json | jq '.workflow_runs[0]'`
+          run =`cat runs.json | jq '.workflow_runs[0]'`
+          echo run
