@@ -1,5 +1,5 @@
 name: Run MATLAB Script on GitHub-Hosted Runner
-on: woekflow_dispatch
+on: workflow_dispatch
 jobs:
   my-job:
     strategy:
