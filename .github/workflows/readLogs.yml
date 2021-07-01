@@ -15,4 +15,6 @@ jobs:
           ls
           echo runs.json
           echo `cat runs.json | jq '.workflow_runs[0].id'`
+          env.run_id = `cat runs.json | jq '.workflow_runs[0].id'`
+          echo ${{env.run_id}}
            
