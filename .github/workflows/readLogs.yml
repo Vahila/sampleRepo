@@ -29,4 +29,4 @@ jobs:
         run: |
           echo "${{ steps.jobids_get.outputs.jobs }}"
           if [[ ${{ steps.jobids_get.outputs.jobs }} == *"[]"* ]]; then
-          echo "empty"
+            echo "empty"
