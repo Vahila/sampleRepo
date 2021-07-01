@@ -12,5 +12,5 @@ jobs:
         export GITHUB_TOKEN=${{ secrets.REST_API_TOKEN }}
         echo ${{github.job}}
         echo ${{github.run_id}}
-        gh run view 982053967 --log
+        gh run view ${{github.run_id}} --log | grep -c cli
         
