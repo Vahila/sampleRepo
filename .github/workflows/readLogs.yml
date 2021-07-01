@@ -13,12 +13,9 @@ jobs:
         run: |
           curl --request GET --header "Authorization:Bearer ${{ secrets.GITHUB_TOKEN }}" --url "https://api.github.com/repos/Vahila/sampleRepo/actions/workflows/bashTest.yml/runs" -o runs.json
           ls
-          echo runs.json
           echo "runid=$(cat runs.json | jq '.workflow_runs[0].id')" >> $GITHUB_ENV
           echo `cat runs.json | jq '.workflow_runs[0].id'`
-          echo "::set-output name=runid::$(cat runs.json | jq '.workflow_runs[0].id')"
-          runid=$(cat runs.json | jq '.workflow_runs[0].id')
-          echo "::set-env name=runid::$runid"
+        
       - name: print env
         run: echo ${{env.runid}}
            
