@@ -1,5 +1,5 @@
 name: Run MATLAB Script on GitHub-Hosted Runner
-on: workflow_dispatch
+on: push
 jobs:
 #   my-job:
 #     strategy:
@@ -26,6 +26,7 @@ jobs:
         
         
   my-second-job:
+    continue-on-error: true
     strategy:
       matrix:
          platform: [ubuntu-latest, ubuntu-18.04]
@@ -41,3 +42,18 @@ jobs:
         
       - name: sum
         run: c = a+b;
+        
+  my-third-job:
+    name: Run test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Assign release version from version.properties to Env variable
+        run: |
+          pwd
+          ls
+          cat data.properties >> $GITHUB_ENV  
+      
+      - name: run ls
+        run: echo "${{env.matlab}}"
