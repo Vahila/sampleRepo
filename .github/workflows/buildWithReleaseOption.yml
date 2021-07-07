@@ -1,5 +1,5 @@
 name: Run MATLAB Script on GitHub-Hosted Runner
-on: [push]
+on: workflow_dispatch
 jobs:
   my-job:
     name: Run MATLAB Script
@@ -23,10 +23,7 @@ jobs:
           test-results-junit: test-results/results.xml
           select-by-tag: TestSquare
       - name: testing artifacts
-        run: |
-          if(grep -c testSquareForNumbers test-results/results.xml == 0); then
-            echo "test failed"
-            exit 1
+        run: grep -c testSquareForNumbers test-results/results.xml
             
 
   second-job:
