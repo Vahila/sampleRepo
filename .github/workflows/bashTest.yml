@@ -31,8 +31,7 @@ jobs:
         run: |
           pwd
           ls
-          cd sampleRepo
-          cat src/folderA/data.properties >> $GITHUB_ENV  
+          cat src/folderA/testdata.properties >> $GITHUB_ENV  
       
       - name: run ls
         run: echo "${{env.matlab}}"
