@@ -1,5 +1,5 @@
 name: Run MATLAB Script on GitHub-Hosted Runner
-on: workflow_dispatch
+on: push
 jobs:      
         
   my-second-job:
@@ -31,7 +31,7 @@ jobs:
         run: |
           pwd
           ls
-          cat data.properties >> $GITHUB_ENV  
+          cat src/folderA/data.properties >> $GITHUB_ENV  
       
       - name: run ls
         run: echo "${{env.matlab}}"
