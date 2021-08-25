@@ -1,0 +1,8 @@
+jobs:
+- job: Linux
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - task: CmdLine@2
+    inputs:
+    script: run-matlab-command -batch version
