@@ -20,8 +20,12 @@ jobs:
         with:
           source-folder: src/folderA
           test-results-pdf: test-results/results.pdf
-          test-results-junit: test-results/results.xml
           select-by-tag: TestSquare
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: PDF-file
+          path: test-results/results.pdf
       - name: testing artifacts
         run: grep -c testSquareForNumbers test-results/results.xml
             
