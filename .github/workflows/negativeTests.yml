@@ -16,9 +16,4 @@ jobs:
       - name: Run script
         uses: matlab-actions/run-command@v0
         with:
-          command: versi
-      #positive test case
-      - name: Run script
-        uses: matlab-actions/run-command@v0
-        with:
-          command: version
+          command: vers
