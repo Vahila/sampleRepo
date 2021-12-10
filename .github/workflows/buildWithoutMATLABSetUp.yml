@@ -1,5 +1,5 @@
 name: Set up MATLAB integration test cases
-on: push
+on: workflow_dispatch
 #   workflow_dispatch:
 #     inputs:
 #       runnerName:
