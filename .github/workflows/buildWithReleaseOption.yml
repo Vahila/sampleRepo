@@ -1,5 +1,5 @@
 name: Artifacts are generated automatically?
-on: push
+on: workflow_dispatch
 jobs:
   my-job:
     name: Run MATLAB Script
