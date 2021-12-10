@@ -1,5 +1,5 @@
 name: Negative tests
-on: [push]
+on: [workflow_dispatch]
 jobs:
   my-job:
     name: Run MATLAB Script
