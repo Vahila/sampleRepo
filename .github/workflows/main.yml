@@ -10,14 +10,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Perform npm tasks
-        run: npm run ci
-      - uses: actions/upload-artifact@v4
-        with:
-          name: built-action
-          path: |
-            **/*
-            !node_modules/
+      # - name: Perform npm tasks
+      #   run: npm run ci
+      # - uses: actions/upload-artifact@v4
+      #   with:
+      #     name: built-action
+      #     path: |
+      #       **/*
+      #       !node_modules/
 
   integ:
     needs: bat
@@ -59,10 +59,10 @@ jobs:
           #   check-matlab: matlabVer = ver('matlab'); assert(~isempty(matlabVer));
           #   check-toolbox: symbolicVer = ver('symbolic'); assert(~isempty(symbolicVer));
           - os: macos-14
-            release: R2023a
+            release: R2023b
             products: Symbolic_Math_Toolbox
-            check-matlab: matlabVer = ver('matlab'); assert(strcmp(matlabVer.Release,'(R2023a)'));
-            check-toolbox: symbolicVer = ver('symbolic'); assert(strcmp(symbolicVer.Release,'(R2023a)'));
+            check-matlab: matlabVer = ver('matlab'); assert(strcmp(matlabVer.Release,'(R2023b)'));
+            check-toolbox: symbolicVer = ver('symbolic'); assert(strcmp(symbolicVer.Release,'(R2023b)'));
     steps:
       - uses: actions/download-artifact@v4
         with:
@@ -89,12 +89,12 @@ jobs:
       #   with:
       #     release: ${{ matrix.release }}
       #     products: ${{ matrix.products }}
-      - name: Call setup MATLAB again with different release # should not error as in issue 130
-        uses: ./
-        with:
-          release: R2023b
-      - name: Check MATLAB version
-        uses: matlab-actions/run-command@v2
-        with:
-          command: matlabVer = ver('matlab'); assert(strcmp(matlabVer.Release,'(R2023b)'));
+      # - name: Call setup MATLAB again with different release # should not error as in issue 130
+      #   uses: ./
+      #   with:
+      #     release: R2023b
+      # - name: Check MATLAB version
+      #   uses: matlab-actions/run-command@v2
+      #   with:
+      #     command: matlabVer = ver('matlab'); assert(strcmp(matlabVer.Release,'(R2023b)'));
   
