@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 20
       # - name: Perform npm tasks
       #   run: npm run ci
       # - uses: actions/upload-artifact@v4
@@ -64,12 +64,9 @@ jobs:
             check-matlab: matlabVer = ver('matlab'); assert(strcmp(matlabVer.Release,'(R2023b)'));
             check-toolbox: symbolicVer = ver('symbolic'); assert(strcmp(symbolicVer.Release,'(R2023b)'));
     steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: built-action
       - name: Install selected products
         id: setup_matlab
-        uses: ./
+        uses: matlab-actions/setup-matlab@v2.3
         with:
           release: ${{ matrix.release }}
           products: ${{ matrix.products }}
