@@ -1,0 +1,44 @@
+name: Create Feature Branches
+
+on:
+  workflow_dispatch:
+    inputs:
+      feature_name:
+        description: "Name of the feature (e.g. new-dashboard)"
+        required: true
+
+jobs:
+  create_branches_and_prs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up GH CLI
+        uses: cli/gh-action@v2
+
+      - name: Create branches
+        run: |
+          fname="${{ github.event.inputs.feature_name }}"
+          base=main
+
+          gh api repos/${{ github.repository }}/git/ref/heads/$base || exit 1
+
+          # Create feature branches
+          gh api repos/${{ github.repository }}/git/refs \
+            -f ref=refs/heads/src/$fname -f sha=$(git rev-parse origin/$base)
+          gh api repos/${{ github.repository }}/git/refs \
+            -f ref=refs/heads/doc/$fname -f sha=$(git rev-parse origin/$base)
+          gh api repos/${{ github.repository }}/git/refs \
+            -f ref=refs/heads/test/$fname -f sha=$(git rev-parse origin/src/$fname)
+          gh api repos/${{ github.repository }}/git/refs \
+            -f ref=refs/heads/feature/$fname -f sha=$(git rev-parse origin/$base)
+
+      - name: Create draft PRs
+        run: |
+          fname="${{ github.event.inputs.feature_name }}"
+          
+          gh pr create --base feature/$fname --head src/$fname --title "Source changes for $fname" --draft 
+          gh pr create --base feature/$fname --head doc/$fname --title "Docs for $fname" --draft 
+          gh pr create --base src/$fname --head test/$fname --title "Tests for $fname" --draft 
+          gh pr create --base main --head feature/$fname --title "Integrate $fname" --draft 
