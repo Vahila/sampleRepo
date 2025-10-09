@@ -1,44 +1,84 @@
-name: Create Feature Branches
+name: Auto-create Feature Branches and PRs
 
 on:
-  workflow_dispatch:
-    inputs:
-      feature_name:
-        description: "Name of the feature (e.g. new-dashboard)"
-        required: true
+  push:
+    branches:
+      - main
 
 jobs:
   create_branches_and_prs:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    env:
+      FEATURE_NAME: testRes
+      DEV_ASSIGNEE: dev-user
+      DOC_ASSIGNEE: doc-user
+      QA_ASSIGNEE: qa-user
+      RELEASE_ASSIGNEE: release-owner
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up GH CLI
         uses: cli/gh-action@v2
 
-      - name: Create branches
+      - name: Configure GitHub CLI
+        run: gh auth setup-git
+
+      - name: Create branches if not exist
         run: |
-          fname="${{ github.event.inputs.feature_name }}"
+          fname=${FEATURE_NAME}
           base=main
 
-          gh api repos/${{ github.repository }}/git/ref/heads/$base || exit 1
+          echo "Creating branches for feature: $fname"
 
-          # Create feature branches
-          gh api repos/${{ github.repository }}/git/refs \
-            -f ref=refs/heads/src/$fname -f sha=$(git rev-parse origin/$base)
-          gh api repos/${{ github.repository }}/git/refs \
-            -f ref=refs/heads/doc/$fname -f sha=$(git rev-parse origin/$base)
-          gh api repos/${{ github.repository }}/git/refs \
-            -f ref=refs/heads/test/$fname -f sha=$(git rev-parse origin/src/$fname)
-          gh api repos/${{ github.repository }}/git/refs \
-            -f ref=refs/heads/feature/$fname -f sha=$(git rev-parse origin/$base)
+          # Function to create branch if not exists
+          create_branch() {
+            branch=$1
+            from=$2
+            if ! git ls-remote --exit-code origin "refs/heads/$branch" >/dev/null 2>&1; then
+              echo "Creating branch $branch from $from"
+              git fetch origin $from
+              git branch $branch origin/$from
+              git push origin $branch
+            else
+              echo "Branch $branch already exists, skipping."
+            fi
+          }
+
+          create_branch src/$fname main
+          create_branch doc/$fname main
+          create_branch test/$fname src/$fname
+          create_branch feature/$fname main
 
       - name: Create draft PRs
         run: |
-          fname="${{ github.event.inputs.feature_name }}"
-          
-          gh pr create --base feature/$fname --head src/$fname --title "Source changes for $fname" --draft 
-          gh pr create --base feature/$fname --head doc/$fname --title "Docs for $fname" --draft 
-          gh pr create --base src/$fname --head test/$fname --title "Tests for $fname" --draft 
-          gh pr create --base main --head feature/$fname --title "Integrate $fname" --draft 
+          fname=${FEATURE_NAME}
+
+          echo "Creating draft PRs for $fname"
+
+          # Helper function to check and create PR
+          create_pr() {
+            head=$1
+            base=$2
+            title=$3
+            assignee=$4
+
+            if ! gh pr list --head $head --base $base --json headRefName,baseRefName --jq '.[] | select(.headRefName=="'$head'" and .baseRefName=="'$base'")' >/dev/null; then
+              echo "Creating PR: $head → $base"
+              gh pr create --base $base --head $head --title "$title" --draft --assignee $assignee
+            else
+              echo "PR from $head to $base already exists."
+            fi
+          }
+
+          create_pr src/$fname feature/$fname "Source changes for $fname" 
+          create_pr doc/$fname feature/$fname "Docs for $fname" 
+          create_pr test/$fname src/$fname "Tests for $fname" 
+          create_pr feature/$fname main "Integrate $fname" 
