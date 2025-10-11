@@ -3,7 +3,7 @@ name: Auto-create Feature Branches and PRs
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   create_branches_and_prs:
@@ -26,7 +26,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up GH CLI
-        uses: cli/gh-action@v2
+        uses: actions/setup-gh@v4
 
       - name: Configure GitHub CLI
         run: gh auth setup-git
