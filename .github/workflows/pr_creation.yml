@@ -26,7 +26,9 @@ jobs:
           fetch-depth: 0
 
       - name: Set up GH CLI
-        uses: actions/setup-gh@v4
+        run: |
+          sudo apt update
+          sudo apt install -y gh
 
       - name: Configure GitHub CLI
         run: gh auth setup-git
