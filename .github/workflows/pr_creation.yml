@@ -13,11 +13,12 @@ jobs:
       pull-requests: write
 
     env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       FEATURE_NAME: testRes
-      DEV_ASSIGNEE: dev-user
-      DOC_ASSIGNEE: doc-user
-      QA_ASSIGNEE: qa-user
-      RELEASE_ASSIGNEE: release-owner
+      DEV_ASSIGNEE: Vahila
+      DOC_ASSIGNEE: Vahila
+      QA_ASSIGNEE: Vahila
+      RELEASE_ASSIGNEE: Vahila
 
     steps:
       - name: Checkout repository
@@ -25,14 +26,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install GitHub CLI
+      - name: Set up GH CLI
         run: |
           sudo apt update
-          sudo apt install -y gh
+          sudo apt install -y gh jq
 
       - name: Authenticate GH CLI
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh auth setup-git
           gh auth status
@@ -44,7 +43,6 @@ jobs:
 
           echo "Creating branches for feature: $fname"
 
-          # Helper to create branch from base if not exists
           create_branch() {
             branch=$1
             from=$2
@@ -64,8 +62,6 @@ jobs:
           create_branch feature/$fname $base
 
       - name: Create draft PRs
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           fname=${FEATURE_NAME}
 
@@ -75,18 +71,25 @@ jobs:
             head=$1
             base=$2
             title=$3
+            body=$3
             assignee=$4
 
-            # Check if PR already exists
-            if gh pr list --head "$head" --base "$base" --json headRefName,baseRefName | jq -e '.[]' >/dev/null; then
-              echo "PR from $head to $base already exists, skipping."
-            else
+            existing_pr=$(gh pr list --head "$head" --base "$base" --json headRefName,baseRefName --jq '.[]')
+            if [ -z "$existing_pr" ]; then
               echo "Creating PR: $head → $base"
-              gh pr create --base "$base" --head "$head" --title "$title" --draft ${assignee:+--assignee "$assignee"}
+              gh pr create \
+                --base "$base" \
+                --head "$head" \
+                --title "$title" \
+                --body "$body" \
+                --draft \
+                ${assignee:+--assignee "$assignee"}
+            else
+              echo "PR from $head to $base already exists, skipping."
             fi
           }
 
           create_pr src/$fname feature/$fname "Source changes for $fname" "$DEV_ASSIGNEE"
           create_pr doc/$fname feature/$fname "Docs for $fname" "$DOC_ASSIGNEE"
           create_pr test/$fname src/$fname "Tests for $fname" "$QA_ASSIGNEE"
-          create_pr feature/$fname master "Integrate $fname" "$RELEASE_ASSIGNEE"
+          create_pr feature/$fname master "Final changes for $fname" "$RELEASE_ASSIGNEE"
