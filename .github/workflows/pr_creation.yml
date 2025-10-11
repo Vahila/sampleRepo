@@ -30,8 +30,12 @@ jobs:
           sudo apt update
           sudo apt install -y gh
 
-      - name: Configure GitHub CLI
-        run: gh auth setup-git
+      - name: Authenticate GH CLI
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "$GITHUB_TOKEN" | gh auth login --with-token
+          gh auth setup-git
 
       - name: Create branches if not exist
         run: |
