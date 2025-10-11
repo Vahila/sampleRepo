@@ -1,5 +1,5 @@
 name: Run MATLAB Script
-on: [push]
+on: [workflow_dispatch]
 jobs:
   my-job:
     name: Run MATLAB Script
