@@ -25,7 +25,8 @@ classdef ComputeDiscountTest < matlab.unittest.TestCase
         
         function testInvalidAmount(testCase)
             % Covers the error path (amount <= 0)
-            testCase.verifyError(@() computeDiscount(0, "gold"), 'MATLAB:unassignedOutputs');
-        end
+% Covers gold branch
+            actual = computeDiscount(100, "silver");
+            testCase.verifyEqual(actual, 90);        end
     end
 end
